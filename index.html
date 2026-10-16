@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jérémy Pons</title>
+<meta name="description" content="Jérémy Pons — growth executive running marketing, product and sales as one engine. Payments, fintech, AI and tech. Stockholm, working worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one long editorial scroll on a 12-col grid; a single full-bleed indigo band carries the manifesto. Deliberately single-theme (light). */
+:root{
+  --bg:#F5F4F0; --surface:#FFFFFF; --ink:#15151A; --ink-2:#3A3842; --body:#4A4852; --muted:#6B6873;
+  --line:#E2E0DA; --line-2:#CFCCC5; --indigo:#C3C5FF; --indigo-ink:#5257C9; --on-indigo:#2A2A3A;
+  --display:'Instrument Serif', 'Iowan Old Style', Georgia, serif;
+  --sans:'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono:'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --gutter:max(clamp(20px,5vw,80px), env(safe-area-inset-left,0px));
+  --gutter-r:max(clamp(20px,5vw,80px), env(safe-area-inset-right,0px));
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-weight:300;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:inherit}
+a:focus-visible,button:focus-visible{outline:2px solid var(--indigo-ink);outline-offset:3px;border-radius:999px}
+h1,h2,h3{font-family:var(--display);font-weight:400;margin:0;text-wrap:balance}
+p{margin:0}
+em{font-style:italic}
+.wrap{max-width:1280px;margin:0 auto;padding-left:var(--gutter);padding-right:var(--gutter-r)}
+.label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.ph{border:1px dashed currentColor;border-radius:6px;padding:0 .3em;white-space:nowrap}
+.grid12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px}
+.c3{grid-column:span 3}.c5{grid-column:span 5}.c7{grid-column:span 7}.c9{grid-column:span 9}
+.btn{display:inline-flex;align-items:center;min-height:48px;padding:0 26px;border-radius:999px;font:500 15px/1 var(--sans);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .2s ease, background .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-indigo{background:var(--indigo);color:var(--ink)}
+.btn-ink{background:var(--ink);color:var(--bg)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line-2)}
+
+/* nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid transparent}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:20px}
+.mark{display:flex;align-items:center;gap:12px;text-decoration:none}
+.mark b{font-family:var(--display);font-weight:400;font-size:28px;line-height:1;letter-spacing:-.02em}
+.mark b i{color:var(--indigo-ink)}
+.nav nav{display:flex;align-items:center;gap:28px;font-size:14px}
+.nav nav a.link{text-decoration:none;color:var(--body)}
+.nav nav a.link:hover{color:var(--ink)}
+
+/* hero */
+.hero{padding-block:clamp(64px,11vw,150px) clamp(56px,8vw,110px)}
+.eyebrow{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--indigo);box-shadow:0 0 0 0 var(--indigo);animation:pulse 2.6s ease-out infinite}
+.sep{color:var(--line-2)}
+.hero h1{margin-top:36px;font-size:clamp(54px,10.5vw,168px);line-height:.92;letter-spacing:-.035em}
+.hero h1 em{color:var(--indigo-ink)}
+.hero .grid12{margin-top:clamp(40px,6vw,72px);align-items:end}
+.lede{font-size:clamp(18px,1.6vw,22px);line-height:1.55;color:var(--ink-2);max-width:62ch}
+.lede strong{font-weight:400;color:var(--ink)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px;justify-content:flex-end}
+
+/* proof strip */
+.proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border-block:1px solid var(--line)}
+.proof > div{padding:32px 24px;border-right:1px solid var(--line)}
+.proof > div:first-child{padding-left:0}
+.proof > div:last-child{border-right:0}
+.big{font-family:var(--display);font-size:64px;line-height:1;letter-spacing:-.03em}
+.big.accent{color:var(--indigo-ink)}
+.proof p{margin-top:14px;font-size:14px;color:var(--muted)}
+
+/* sections */
+section.block{padding-top:clamp(96px,12vw,180px)}
+.h2{font-size:clamp(40px,5.4vw,80px);line-height:1;letter-spacing:-.03em}
+.h2 em{color:var(--muted)}
+.h2 em.ind{color:var(--indigo-ink)}
+
+/* engine */
+.gears{margin-top:72px;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.gear{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:36px;display:flex;flex-direction:column}
+.gear header{display:flex;justify-content:space-between;align-items:center}
+.gear h3{font-size:44px;letter-spacing:-.02em}
+.chip{font-family:var(--mono);font-size:12px;width:32px;height:32px;border-radius:50%;background:var(--indigo);display:inline-flex;align-items:center;justify-content:center}
+.gear p{margin:18px 0 28px;color:var(--body)}
+.gear ul{list-style:none;margin:auto 0 0;padding:18px 0 0;border-top:1px solid var(--line);font-size:14px;line-height:1.9}
+
+/* manifesto */
+.band{margin-top:clamp(120px,14vw,200px);background:var(--indigo)}
+.band .wrap{padding-block:clamp(80px,10vw,140px)}
+.band .quote{font-family:var(--display);font-size:clamp(40px,6.6vw,104px);line-height:1;letter-spacing:-.03em;max-width:1150px;text-wrap:balance}
+.band .sub{margin-top:40px;font-size:18px;color:var(--on-indigo);max-width:56ch}
+
+/* cases */
+.cases{margin-top:64px;display:flex;flex-direction:column;gap:24px}
+.case{display:flex;flex-wrap:wrap;gap:40px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:clamp(28px,4vw,56px);transition:transform .3s ease, border-color .3s ease}
+.case:hover{transform:translateY(-3px);border-color:var(--line-2)}
+.case .story{flex:1 1 320px;min-width:0}
+.case h3{margin-top:18px;font-size:clamp(32px,3.4vw,48px);line-height:1.05;letter-spacing:-.02em}
+.case .story p{margin-top:20px;color:var(--body);max-width:56ch}
+.case .story .ph{color:var(--indigo-ink)}
+.result{flex:0 1 300px;background:var(--indigo);border-radius:18px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;min-height:220px}
+.result .num{font-family:var(--display);font-size:clamp(80px,9vw,128px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.result p{margin-top:14px;font-size:14px;color:var(--on-indigo)}
+
+/* trajectory */
+.timeline{list-style:none;margin:64px 0 0;padding:0;border-top:1px solid var(--line)}
+.timeline li{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:24px;padding:26px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.timeline .yr{grid-column:span 3;font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.timeline .yr.now{color:var(--indigo-ink)}
+.timeline .role{grid-column:span 9;display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap}
+.timeline .role span:first-child{font-size:22px;font-weight:400}
+.timeline .role span:last-child{color:var(--muted)}
+.edu{margin-top:28px;font-size:14px;color:var(--muted)}
+
+/* contact */
+.contact{padding-block:clamp(140px,14vw,240px) 64px}
+.contact h2{margin-top:28px;font-size:clamp(56px,9vw,144px);line-height:.92;letter-spacing:-.035em}
+.contact h2 em{color:var(--indigo-ink)}
+.contact .grid12{margin-top:56px;align-items:end}
+.contact p{font-size:18px;color:var(--body);max-width:56ch}
+.mail{margin-top:20px;font-family:var(--mono);font-size:14px;color:var(--ink-2);user-select:all}
+.toast{font-family:var(--mono);font-size:12px;color:var(--indigo-ink);min-height:1em;margin-top:8px}
+footer{margin-top:140px;padding-top:28px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;color:var(--muted)}
+
+/* entrance: transform-only, content is readable at rest */
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+@keyframes pulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--indigo) 90%,transparent)}70%{box-shadow:0 0 0 12px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero h1 span{display:inline-block;animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.hero h1 span:nth-child(3){animation-delay:.12s}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+@media (max-width:820px){
+  .c3,.c5,.c7,.c9{grid-column:span 12}
+  .ctas{justify-content:flex-start}
+  .nav nav a.link{display:none}
+  .proof > div{padding-left:0;border-right:0;border-bottom:1px solid var(--line)}
+  .proof > div:last-child{border-bottom:0}
+  .timeline .yr,.timeline .role{grid-column:span 12}
+  .timeline li{gap:6px}
+}
+</style>
+<meta property="og:title" content="Jérémy Pons — One growth engine. Three disciplines.">
+<meta property="og:description" content="Growth executive running marketing, product and sales as one engine. Payments, fintech, AI and tech.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#F5F4F0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23C3C5FF'/%3E%3Ctext x='32' y='44' font-family='Georgia,serif' font-size='32' text-anchor='middle' fill='%2315151A'%3EJP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div class="nav">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Jérémy Pons, back to top"><b>J<i>P</i></b><span class="label">Jérémy Pons</span></a>
+    <nav aria-label="Main">
+      <a class="link" href="#engine">The engine</a>
+      <a class="link" href="#work">Work</a>
+      <a class="link" href="#trajectory">Trajectory</a>
+      <a class="btn btn-ink" href="#contact">Let’s talk</a>
+    </nav>
+  </div>
+</div>
+
+<main id="top">
+  <header class="hero wrap">
+    <div class="eyebrow label">
+      <span class="dot" aria-hidden="true"></span>
+      <span>Acting CMO</span><span class="sep" aria-hidden="true">/</span>
+      <span>Payments · Fintech · AI · Tech</span><span class="sep" aria-hidden="true">/</span>
+      <span>Stockholm, working worldwide</span>
+    </div>
+    <h1><span>One growth engine.</span><br><span><em>Three disciplines.</em></span></h1>
+    <div class="grid12">
+      <p class="lede c7">I’m Jérémy, a growth executive who runs <strong>marketing, product and sales as one system</strong>. Six years scaling open-banking payments, from consumer growth to running a region’s commercial engine, and now the brand.</p>
+      <div class="ctas c5">
+        <a class="btn btn-indigo" href="#work">See the work</a>
+        <a class="btn btn-ghost" href="#contact">Start a conversation</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="wrap" aria-label="At a glance">
+    <div class="proof">
+      <div><div class="big accent"><span class="ph">€[X]M</span></div><p>revenue owned across a region</p></div>
+      <div><div class="big"><span class="ph">[N]</span> markets</div><p>led go-to-market in, international scope</p></div>
+      <div><div class="big"><span class="ph">[N]</span> people</div><p>across marketing, product and sales teams</p></div>
+      <div><div class="big">4 <em>languages</em></div><p>French · English · Swedish · Spanish</p></div>
+    </div>
+  </div>
+
+  <section id="engine" class="block wrap">
+    <div class="grid12">
+      <p class="label c3">The engine</p>
+      <h2 class="h2 c9">Most leaders own one gear. <em>I’ve run all three, and the gearbox between them.</em></h2>
+    </div>
+    <div class="gears">
+      <article class="gear">
+        <header><h3>Marketing</h3><span class="chip" aria-hidden="true">M</span></header>
+        <p>Brand, demand and consumer growth. Turning a payments rail most people never notice into a reason to choose.</p>
+        <ul><li>Acting CMO</li><li>VP Consumer Growth</li><li>Business Marketing Manager, Partner Channel</li></ul>
+      </article>
+      <article class="gear">
+        <header><h3>Product</h3><span class="chip" aria-hidden="true">P</span></header>
+        <p>Positioning, launches and the story that makes complex fintech and AI feel obvious to businesses, banks and consumers.</p>
+        <ul><li>VP Product Marketing</li><li>Innovation sandbox and MVPs, Virtusa xLabs</li><li>Strategy design, independent practice</li></ul>
+      </article>
+      <article class="gear">
+        <header><h3>Sales</h3><span class="chip" aria-hidden="true">S</span></header>
+        <p>Commercial leadership, partnerships and new markets. Owning the number, not just the narrative.</p>
+        <ul><li>Chief Commercial Officer, Southern Europe</li><li>Head of Sales Nordics, Virtusa xLabs</li><li>Senior Management Consultant, Virtusa</li></ul>
+      </article>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <p class="quote">Ideas are cheap.<br><em>Landing them</em> is the job.</p>
+      <p class="sub">Customer obsession, rapid experiments and systems built for uncertainty. Nobody predicts the future. The best leaders build organisations that don’t need to.</p>
+    </div>
+  </div>
+
+  <section id="work" class="block wrap">
+    <div class="grid12" style="align-items:end">
+      <p class="label c3">Selected work</p>
+      <h2 class="h2 c9">Proof, not adjectives.</h2>
+    </div>
+    <div class="cases">
+      <article class="case">
+        <div class="story">
+          <p class="label">Telecom · Open banking · UK</p>
+          <h3>Making sign-up disappear for a tier-one telco</h3>
+          <p>Telecom onboarding loses more than half of would-be customers. Automated direct-debit setup via open banking cut the friction, the fraud and the manual reviews. <span class="ph">[Your role: e.g. led the GTM and launch narrative]</span></p>
+        </div>
+        <div class="result"><div class="num">~60%</div><p>of users adopted open-banking payments during rollout</p></div>
+      </article>
+      <article class="case">
+        <div class="story">
+          <p class="label">Energy · Embedded payments · Nordics</p>
+          <h3>Making the utility bill invisible</h3>
+          <p>Nobody wants to think about paying for power. An embedded, recurring payment flow changed how people pay in four months. <span class="ph">[Your role and what you drove]</span></p>
+        </div>
+        <div class="result"><div class="num">+68%</div><p>activations in four months</p></div>
+      </article>
+      <article class="case">
+        <div class="story">
+          <p class="label">Fintech · Commercial leadership · Southern Europe</p>
+          <h3>Building a region’s commercial engine, Paris to Stockholm</h3>
+          <p>Took the commercial helm of a region and ran it as one engine: sales, partnerships and marketing pulling the same lever. <span class="ph">[Clients signed, team built, revenue growth]</span></p>
+        </div>
+        <div class="result"><div class="num"><span class="ph">[X]×</span></div><p>regional revenue growth <span class="ph">[period]</span></p></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="trajectory" class="block wrap">
+    <div class="grid12">
+      <p class="label c3">Trajectory</p>
+      <h2 class="h2 c9">Consultant. Seller. Marketer. <em class="ind">Operator.</em></h2>
+    </div>
+    <ol class="timeline">
+      <li><span class="yr now">Now</span><span class="role"><span>Acting Chief Marketing Officer</span><span>Trustly</span></span></li>
+      <li><span class="yr">2024</span><span class="role"><span>Chief Commercial Officer, Southern Europe</span><span>Trustly · Paris–Stockholm</span></span></li>
+      <li><span class="yr">2023</span><span class="role"><span>VP Product Marketing</span><span>Trustly</span></span></li>
+      <li><span class="yr">2021</span><span class="role"><span>VP Consumer Growth</span><span>Trustly</span></span></li>
+      <li><span class="yr">2020</span><span class="role"><span>Business Marketing Manager, Partner Channel</span><span>Trustly</span></span></li>
+      <li><span class="yr">2018</span><span class="role"><span>Head of Sales Nordics, xLabs</span><span>Virtusa</span></span></li>
+      <li><span class="yr">2017</span><span class="role"><span>Senior Management Consultant</span><span>Virtusa</span></span></li>
+      <li><span class="yr">2015</span><span class="role"><span>Independent strategy consultant</span><span>Sweden &amp; France</span></span></li>
+    </ol>
+    <p class="edu">Griffith College Dublin, graduated with Distinction, 2014 · Growth Tribe: Customer Centricity, Lead Differently</p>
+  </section>
+
+  <section id="contact" class="contact wrap">
+    <p class="label">Next chapter</p>
+    <h2>Building the next<br><em>growth engine?</em></h2>
+    <div class="grid12">
+      <div class="c7">
+        <p>Open to VP and C-level roles and select advisory engagements in payments, fintech, AI and tech, internationally. Based in Stockholm, remote-ready, on a plane a few times a month.</p>
+        <p class="mail" id="mail">hello@jeremypons.com</p>
+      </div>
+      <div class="c5">
+        <div class="ctas">
+          <button class="btn btn-indigo" id="copy" type="button">Copy email</button>
+          <a class="btn btn-ghost" href="https://www.linkedin.com/in/jeremypons/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+        <p class="toast" id="toast" role="status" aria-live="polite" style="text-align:right"></p>
+      </div>
+    </div>
+    <footer><span>© 2026 Jérémy Pons</span><span>Stockholm · Paris · Remote</span></footer>
+  </section>
+</main>
+
+<script>
+(function(){
+  var btn=document.getElementById('copy'),mail=document.getElementById('mail'),toast=document.getElementById('toast');
+  function selectText(){var r=document.createRange();r.selectNodeContents(mail);var s=getSelection();s.removeAllRanges();s.addRange(r);}
+  btn.addEventListener('click',function(){
+    var t=mail.textContent.trim();
+    var done=function(){toast.textContent='Email copied';};
+    var fail=function(){selectText();toast.textContent='Selected — press Ctrl/Cmd+C';};
+    try{navigator.clipboard.writeText(t).then(done,fail);}catch(e){fail();}
+  });
+})();
+</script>
+</body>
+</html>
