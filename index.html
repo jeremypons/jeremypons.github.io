@@ -275,31 +275,15 @@ footer{margin-top:140px;padding-top:28px;border-top:1px solid var(--line);displa
     <div class="grid12">
       <div class="c7">
         <p>Open to VP and C-level roles and select advisory engagements in payments, fintech, AI and tech, internationally. Based in Stockholm, remote-ready, on a plane a few times a month.</p>
-        <p class="mail" id="mail">hello@jeremypons.com</p>
       </div>
       <div class="c5">
         <div class="ctas">
-          <button class="btn btn-indigo" id="copy" type="button">Copy email</button>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/jeremypons/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn btn-indigo" href="https://www.linkedin.com/in/jeremypons/" target="_blank" rel="noopener">Message me on LinkedIn</a>
         </div>
-        <p class="toast" id="toast" role="status" aria-live="polite" style="text-align:right"></p>
       </div>
     </div>
     <footer><span>© 2026 Jérémy Pons</span><span>Stockholm · Paris · Remote</span></footer>
   </section>
 </main>
-
-<script>
-(function(){
-  var btn=document.getElementById('copy'),mail=document.getElementById('mail'),toast=document.getElementById('toast');
-  function selectText(){var r=document.createRange();r.selectNodeContents(mail);var s=getSelection();s.removeAllRanges();s.addRange(r);}
-  btn.addEventListener('click',function(){
-    var t=mail.textContent.trim();
-    var done=function(){toast.textContent='Email copied';};
-    var fail=function(){selectText();toast.textContent='Selected — press Ctrl/Cmd+C';};
-    try{navigator.clipboard.writeText(t).then(done,fail);}catch(e){fail();}
-  });
-})();
-</script>
 </body>
 </html>
