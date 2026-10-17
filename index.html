@@ -422,7 +422,8 @@ section[id]{scroll-margin-top:var(--nav-height)}
 em{font-style:italic}
 .t-hero em,.t-display em,.t-display-xl em{color:var(--color-accent)}
 .label{font-family:var(--font-secondary);font-size:12px;line-height:1.4;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-tertiary)}
-.ph{border:1px dashed currentColor;border-radius:var(--radius-xs);padding:0 .25em;white-space:nowrap}
+.ph{border:1px dashed currentColor;border-radius:var(--radius-xs);padding:0 .25em;-webkit-box-decoration-break:clone;box-decoration-break:clone;color:var(--color-accent)}
+.band .ph,.icard--c .ph{color:inherit}
 .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* Nav */
@@ -465,7 +466,7 @@ em{font-style:italic}
 
 /* Compare */
 .compare__spacer{display:none}
-.track-ctrl{display:none;gap:12px}
+.track-ctrl{display:flex;gap:12px}
 .compare__cell svg{flex:none}
 .compare__cell--hl svg{color:var(--color-accent)}
 .compare__cell:not(.compare__cell--hl) svg{color:var(--color-text-tertiary)}
@@ -559,6 +560,64 @@ em{font-style:italic}
 .footer__col a{color:inherit;text-decoration:none}
 .footer__col a:hover{text-decoration:underline}
 
+
+/* Proof strip */
+.proofstrip{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--grid-gap);padding-block:var(--space-3xl) 0;border-bottom:var(--border-width) solid var(--color-border);padding-bottom:var(--space-3xl)}
+.proofstrip>div{display:flex;flex-direction:column;gap:var(--space-3xs)}
+.proofstrip .t-h4{font-family:var(--font-display);letter-spacing:-.01em;color:var(--color-text)}
+
+/* About (testimonial anatomy with portrait) */
+.about{grid-template-columns:332px 1fr 1px 326px;align-items:stretch}
+.about img.testimonial__img{height:auto;align-self:start;object-position:30% 20%}
+.about__story{gap:var(--space-s)}
+.about__story .t-h5{margin-bottom:var(--space-2xs)}
+
+/* Featured case: route */
+.case-img__map{display:flex;flex-direction:column;align-items:center;gap:6px;font-family:var(--font-secondary);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--color-text)}
+.case-img__map span{background:var(--color-bg-subtle);padding:6px 12px;border-radius:var(--radius-full);box-shadow:0 8px 20px -14px rgb(30 30 60 / .5)}
+.case-img__map i{width:1px;height:22px;background:var(--color-accent)}
+
+/* How I lead */
+.lead{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--grid-gap)}
+.lead__card{display:flex;flex-direction:column;gap:var(--space-xs);padding:var(--space-l);border-radius:var(--radius-l);background:var(--color-bg-subtle);border:var(--border-width) solid var(--color-border)}
+.lead__card p{color:var(--color-text-secondary)}
+.lead__n{font-family:var(--font-display);font-size:40px;line-height:1;color:var(--color-accent)}
+
+/* Quotes */
+.quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--grid-gap)}
+.quote{margin:0;display:flex;flex-direction:column;justify-content:space-between;gap:var(--space-xl);padding:var(--space-l);border-radius:var(--radius-l);background:var(--color-bg-subtle)}
+.quote blockquote{margin:0}
+.quote figcaption{display:flex;flex-direction:column}
+
+/* Terrain */
+.terrain{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--space-xl);padding:var(--space-xl)}
+.terrain>div{display:flex;flex-direction:column;gap:var(--space-2xs)}
+.terrain__list{font-size:var(--fs-h6);line-height:var(--lh-h6)}
+
+/* Ways to work together */
+.way{display:flex;flex-direction:column;gap:var(--space-s);padding:var(--space-l);border-radius:var(--radius-l);border:var(--border-width) solid var(--color-border-strong)}
+.way p{color:var(--color-text-secondary);flex:1}
+.way:first-child{background:var(--color-bg-inverse);color:var(--color-text-inverse);border-color:var(--color-bg-inverse)}
+.way:first-child p{color:rgb(255 255 255 / .72)}
+.way:first-child .label{color:var(--color-accent-bright)}
+.way:first-child .link{color:var(--color-text-inverse)}
+
+/* CTA photo */
+.cta__photo{padding:0;height:100%;max-height:440px;aspect-ratio:auto;object-position:50% 15%}
+
+@media (max-width:1023px){
+  .proofstrip{grid-template-columns:repeat(3,1fr)}
+  .lead,.quotes{grid-template-columns:repeat(2,1fr)}
+  .about{grid-template-columns:1fr 1fr}
+  .terrain{grid-template-columns:1fr}
+}
+@media (max-width:767px){
+  .proofstrip{grid-template-columns:repeat(2,1fr)}
+  .lead,.quotes{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .cta__photo{max-height:360px;width:100%}
+}
+
 @media (max-width:1180px){
   .switch{display:none}
 }
@@ -602,28 +661,30 @@ em{font-style:italic}
 <header class="nav"><div class="container nav__inner">
   <div class="nav__left">
     <a class="brand" href="#top" aria-label="Jérémy Pons, back to top"><span class="brand__mark" aria-hidden="true">JP</span>Jérémy Pons</a>
-    <a class="switch" href="#contact"><span class="switch__active">Executive roles</span><span>Advisory →</span></a>
+    <a class="switch" href="#ways"><span class="switch__active">C-level roles</span><span>Advisory →</span></a>
   </div>
   <nav class="nav__links" aria-label="Main">
-    <a class="nav-pill" href="#engine">The engine</a>
+    <a class="nav-pill" href="#about">About</a>
     <a class="nav-pill" href="#work">Work</a>
     <a class="nav-pill" href="#how">Method</a>
     <a class="nav-pill" href="#trajectory">Trajectory</a>
+    <a class="nav-pill" href="#ways">Work with me</a>
   </nav>
   <div class="nav__right">
     <a class="btn btn--s btn--outline" href="https://www.linkedin.com/in/jeremypons/" target="_blank" rel="noopener">LinkedIn <span class="ext" aria-hidden="true">↗</span></a>
     <a class="btn btn--s btn--primary" href="#contact">Let’s talk</a>
   </div>
 </div></header>
-<div class="announce"><span>Open to VP and C-level roles<span class="announce__more"> in payments, fintech, AI and tech</span></span> <a href="#contact">Start a conversation</a></div>
+<div class="announce"><span>Open to C-level roles, board and advisory seats<span class="announce__more"> in payments, fintech and AI</span></span> <a href="#ways">Ways to work together</a></div>
 
 <main id="top">
+<!-- HERO -->
 <section class="hero container">
   <div class="hero__text">
-    <span class="label hero__eyebrow"><span class="dot" aria-hidden="true"></span>Acting CMO · Stockholm, working worldwide</span>
+    <span class="label hero__eyebrow"><span class="dot" aria-hidden="true"></span>Global Head of Brand &amp; Marketing · Stockholm, working worldwide</span>
     <div class="hero__copy">
       <h1 class="t-hero">One growth engine.<br><em>Three disciplines.</em></h1>
-      <p class="t-body-l t-secondary">I run marketing, product and sales as one system. Six years scaling open-banking payments, from consumer growth to a region’s commercial engine, and now the brand.</p>
+      <p class="t-body-l t-secondary">I take the products nobody dreams about, the rails a society quietly runs on, and make the market want them. Brand, product and sales, run as one go-to-market engine.</p>
     </div>
     <div class="hero__ctas">
       <a class="btn btn--l btn--primary" href="#work">See the work <span class="btn__arrow">→</span></a>
@@ -645,42 +706,69 @@ em{font-style:italic}
   </div>
 </section>
 
+<!-- PROOF STRIP -->
+<section class="container proofstrip" aria-label="At a glance">
+  <div><span class="t-h4">$35M+</span><span class="t-caption t-secondary">revenue led as CCO</span></div>
+  <div><span class="t-h4"><span class="ph">XX</span></span><span class="t-caption t-secondary">markets launched or led</span></div>
+  <div><span class="t-h4"><span class="ph">XX</span></span><span class="t-caption t-secondary">people led across three disciplines</span></div>
+  <div><span class="t-h4">3</span><span class="t-caption t-secondary">regulated regions: EU, Nordics, North America</span></div>
+  <div><span class="t-h4">4</span><span class="t-caption t-secondary">working languages</span></div>
+</section>
+
+<!-- ABOUT -->
+<section class="section--lg container" id="about">
+  <h2 class="t-h4" style="margin-bottom:var(--section-head-gap)">Why payments? <span class="t-tertiary">Because nobody dreams about them.</span></h2>
+  <article class="panel testimonial about">
+    <img class="media testimonial__img" src="jeremy-portrait.webp" width="720" height="720" alt="Portrait of Jérémy Pons in a dark turtleneck, arms crossed">
+    <div class="stack about__story">
+      <p class="t-h5">Nobody wakes up wanting to change how they pay. That is exactly why it needs the right words.</p>
+      <p class="t-secondary">I studied brand and marketing because everything in life runs on experience, recognition and the right words. Dublin put me next to the SaaS giants and showed me the dot that connects brand, investment and go-to-market: the product.</p>
+      <p class="t-secondary">Years of freelance work across industries taught me the rest. Companies spend too much or too little on brand. Product is what you build, sell and give to the world. And the products a society can’t run without, in banking and healthcare, deserve the best packaging there is.</p>
+      <p class="t-secondary">So I went where those products live. Helping banks and insurers go API-first and to the cloud. Implementing PSD2 inside banks at the birth of open banking. Then six years at a global open banking leader, through partnerships, consumer growth, product marketing, a region’s commercial engine, and now the brand.</p>
+    </div>
+    <div class="testimonial__divider"></div>
+    <div class="stack testimonial__metric" style="justify-content:flex-end;gap:var(--space-l)"><span class="t-display-xl">$35M+</span><span class="t-secondary">revenue led as Chief Commercial Officer, Southern Europe, running the entity and building go-to-market teams from the ground up</span></div>
+  </article>
+</section>
+
+<!-- ENGINE -->
 <section class="section--lg container" id="engine">
   <div class="section__head"><h2 class="t-h4">Most leaders own one gear.<br><span class="t-tertiary">I’ve run all three, and the gearbox between them.</span></h2></div>
   <div class="grid-4">
     <article class="feature">
       <div class="media feature__img"><span class="feature__glyph" aria-hidden="true">M</span>
-        <div class="snip" aria-hidden="true"><span class="snip__k">Marketing</span><ul><li><span>Acting CMO</span><span>Now</span></li><li><span>VP Consumer Growth</span><span>’21</span></li></ul></div></div>
-      <div class="feature__text"><h3 class="t-h6">Marketing</h3><p>Brand, demand and consumer growth. Turning a payments rail most people never notice into a reason to choose.</p></div>
-      <ul class="roles"><li>Acting CMO</li><li>VP Consumer Growth</li><li>Business Marketing Manager, Partner Channel</li></ul>
+        <div class="snip" aria-hidden="true"><span class="snip__k">Brand &amp; marketing</span><ul><li><span>Global Head of Brand</span><span>Now</span></li><li><span>VP Consumer Growth</span><span>’21</span></li></ul></div></div>
+      <div class="feature__text"><h3 class="t-h6">Brand &amp; marketing</h3><p>Building brand, content and growth marketing from scratch for a global team: people, tooling, measurement and the operating rhythm. <span class="ph">XXX: one headline result</span></p></div>
+      <ul class="roles"><li>Global Head of Brand &amp; Marketing</li><li>VP Consumer Growth</li><li>Partner channel marketing</li></ul>
     </article>
     <article class="feature">
       <div class="media feature__img"><span class="feature__glyph" aria-hidden="true">P</span>
-        <div class="snip" aria-hidden="true"><span class="snip__k">Product</span><ul><li><span>VP Product Marketing</span><span>’23</span></li><li><span>Innovation sandbox</span><span>’18</span></li></ul></div></div>
-      <div class="feature__text"><h3 class="t-h6">Product</h3><p>Positioning, launches and the story that makes complex fintech and AI feel obvious to businesses, banks and consumers.</p></div>
-      <ul class="roles"><li>VP Product Marketing</li><li>Innovation sandbox and MVPs, Virtusa xLabs</li><li>Strategy design, independent practice</li></ul>
+        <div class="snip" aria-hidden="true"><span class="snip__k">Product</span><ul><li><span>VP Product Marketing</span><span>’23</span></li><li><span>Product design</span><span>’23</span></li></ul></div></div>
+      <div class="feature__text"><h3 class="t-h6">Product</h3><p>Built a product marketing team and launched open banking personalisation and recognition, so returning customers pay in fewer steps. <span class="ph">XXX: launch result</span></p></div>
+      <ul class="roles"><li>VP Product Marketing &amp; product design</li><li>Innovation sandbox and MVPs</li><li>Founder pitch and GTM advisory</li></ul>
     </article>
     <article class="feature">
       <div class="media feature__img"><span class="feature__glyph" aria-hidden="true">S</span>
-        <div class="snip" aria-hidden="true"><span class="snip__k">Sales</span><ul><li><span>CCO, Southern Europe</span><span>’24</span></li><li><span>Head of Sales Nordics</span><span>’18</span></li></ul></div></div>
-      <div class="feature__text"><h3 class="t-h6">Sales</h3><p>Commercial leadership, partnerships and new markets. Owning the number, not just the narrative.</p></div>
-      <ul class="roles"><li>Chief Commercial Officer, Southern Europe</li><li>Head of Sales Nordics, Virtusa xLabs</li><li>Senior Management Consultant, Virtusa</li></ul>
+        <div class="snip" aria-hidden="true"><span class="snip__k">Sales</span><ul><li><span>CCO, Southern Europe</span><span>$35M+</span></li><li><span>Head of Sales Nordics</span><span>’18</span></li></ul></div></div>
+      <div class="feature__text"><h3 class="t-h6">Sales</h3><p>Owned the number: $35M+ in revenue, a legal entity, and go-to-market teams built from the ground up. <span class="ph">XXX: growth over the period</span></p></div>
+      <ul class="roles"><li>Chief Commercial Officer, Southern Europe</li><li>Head of Sales Nordics</li><li>Partnerships</li></ul>
     </article>
     <article class="feature">
       <div class="media feature__img"><span class="feature__glyph" aria-hidden="true"><em>+</em></span>
-        <div class="snip" aria-hidden="true"><span class="snip__k">The gearbox</span><ul><li><span>One plan · one voice</span><span>→</span></li><li><span>One number</span><span>→</span></li></ul></div></div>
-      <div class="feature__text"><h3 class="t-h6">The gearbox</h3><p>The part most org charts miss: the handoffs. I design them out, so a story, a product and a pipeline move as one.</p></div>
-      <a class="link" href="#how">See the method →</a>
+        <div class="snip" aria-hidden="true"><span class="snip__k">The gearbox</span><ul><li><span>One plan · one voice</span><span>→</span></li><li><span>AI in every workflow</span><span>→</span></li></ul></div></div>
+      <div class="feature__text"><h3 class="t-h6">The gearbox</h3><p>The part most org charts miss: the handoffs. One operating rhythm, one measurement model, and AI that gives teams their time back.</p></div>
+      <a class="link" href="#lead">How I lead →</a>
     </article>
   </div>
 </section>
 
+<!-- COMPARE -->
 <section class="section--lg container">
   <div class="compare" role="table" aria-label="One-gear leader versus full-engine leader">
     <h2 class="t-h4" role="rowheader">Where growth leaks, and who plugs it.</h2>
     <span class="compare__spacer" aria-hidden="true"></span><div class="compare__hcell compare__hcell--hl" role="columnheader">Full engine</div><div class="compare__hcell" role="columnheader">One gear</div>
 
-    <div class="compare__cell compare__label" role="rowheader">Brand and demand<small>Acting CMO · VP Consumer Growth</small></div>
+    <div class="compare__cell compare__label" role="rowheader">Brand and demand<small>Global Head of Brand · VP Consumer Growth</small></div>
     <div class="compare__cell compare__cell--hl" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Led it</div>
     <div class="compare__cell" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.5v4" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="11" r=".9" fill="currentColor"/></svg>Maybe</div>
 
@@ -688,9 +776,17 @@ em{font-style:italic}
     <div class="compare__cell compare__cell--hl" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Led it</div>
     <div class="compare__cell" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg>Handed off</div>
 
-    <div class="compare__cell compare__label" role="rowheader">Revenue ownership<small>CCO, Southern Europe</small></div>
+    <div class="compare__cell compare__label" role="rowheader">Revenue ownership<small>CCO, Southern Europe · $35M+</small></div>
     <div class="compare__cell compare__cell--hl" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Owned the number</div>
     <div class="compare__cell" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg>Someone else’s</div>
+
+    <div class="compare__cell compare__label" role="rowheader">Regulated markets<small>Fintech, iGaming, banking · EU and North America</small></div>
+    <div class="compare__cell compare__cell--hl" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Home turf</div>
+    <div class="compare__cell" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 4.5v4" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="11" r=".9" fill="currentColor"/></svg>Slows down</div>
+
+    <div class="compare__cell compare__label" role="rowheader">AI in the workflow<small>Marketing, sales and product</small></div>
+    <div class="compare__cell compare__cell--hl" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Built in</div>
+    <div class="compare__cell" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 5.5l5 5M10.5 5.5l-5 5" stroke="currentColor" stroke-width="1.5"/></svg>A pilot</div>
 
     <div class="compare__cell compare__label" role="rowheader">Handoffs between teams<small>Where most growth leaks</small></div>
     <div class="compare__cell compare__cell--hl" role="cell"><svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>Designed out</div>
@@ -699,44 +795,66 @@ em{font-style:italic}
   <a class="link compare__note" href="#trajectory">See the roles behind each row →</a>
 </section>
 
-<section class="band" aria-label="At a glance"><div class="container">
+<!-- BAND -->
+<section class="band" aria-label="In numbers"><div class="container">
   <h2 class="t-display">Ideas are cheap.<br><em>Landing them</em> is the job.</h2>
   <p class="t-body-l band__sub">Customer obsession, rapid experiments and systems built for uncertainty. Nobody predicts the future. The best leaders build organisations that don’t need to.</p>
-  <div class="chips" aria-hidden="true"><span class="chip"><b>●</b> Payments</span><span class="chip">Fintech</span><span class="chip">AI</span><span class="chip">Tech</span></div>
+  <div class="chips" aria-hidden="true"><span class="chip"><b>●</b> Payments</span><span class="chip">Open banking</span><span class="chip">Fintech</span><span class="chip">iGaming</span><span class="chip">AI</span></div>
   <div class="stats">
-    <div class="stat"><span class="t-h3"><span class="ph">€[X]M</span></span><span class="t-caption">Revenue owned across a region</span></div>
-    <div class="stat"><span class="t-h3"><span class="ph">[N]</span></span><span class="t-caption">Markets led go-to-market in</span></div>
-    <div class="stat"><span class="t-h3"><span class="ph">[N]</span></span><span class="t-caption">People across marketing, product and sales</span></div>
-    <div class="stat"><span class="t-h3">4</span><span class="t-caption">Languages: French, English, Swedish, Spanish</span></div>
+    <div class="stat"><span class="t-h3">$35M+</span><span class="t-caption">Revenue led as CCO</span></div>
+    <div class="stat"><span class="t-h3"><span class="ph">$XXM</span></span><span class="t-caption">Marketing budget owned</span></div>
+    <div class="stat"><span class="t-h3"><span class="ph">XX</span></span><span class="t-caption">Teams and hires built from zero</span></div>
+    <div class="stat"><span class="t-h3"><span class="ph">XX</span></span><span class="t-caption">Products and launches taken to market</span></div>
   </div>
 </div></section>
 
+<!-- WORK -->
 <section class="section--lg container" id="work">
-  <div class="section__head"><h2 class="t-h4">Proof, not adjectives.</h2>
+  <div class="section__head"><h2 class="t-h4">Proof, not adjectives.<br><span class="t-tertiary">Clients anonymised, results real.</span></h2>
     <div class="track-ctrl"><button class="icon-btn" type="button" data-scroll="-1" aria-label="Previous cases">←</button><button class="icon-btn" type="button" data-scroll="1" aria-label="Next cases">→</button></div></div>
 
   <article class="panel testimonial">
     <div class="media testimonial__img case-img" aria-hidden="true">
-      <div class="case-img__phone"><span class="snip__k">Direct debit</span><div class="case-img__bar"></div><div class="case-img__bar case-img__bar--s"></div><div class="case-img__bar"></div><div class="case-img__ok"><i></i>Connected via your bank</div></div>
+      <div class="case-img__map"><span>Paris</span><i></i><span>XXX market</span><i></i><span>XXX market</span><i></i><span>Stockholm</span></div>
     </div>
     <div class="stack case-meta" style="justify-content:space-between">
-      <div class="case-meta"><span class="label">Telecom · Open banking · UK</span>
-        <p class="t-h5">Making sign-up disappear for a tier-one telco.</p>
-        <p class="t-secondary">Telecom onboarding loses more than half of would-be customers. Automated direct-debit setup via open banking cut the friction, the fraud and the manual reviews.</p></div>
-      <p class="t-body-s t-secondary"><span class="ph">[Your role: e.g. led the GTM and launch narrative]</span></p>
+      <div class="case-meta"><span class="label">Fintech · Commercial leadership · Southern Europe</span>
+        <p class="t-h5">Building a region’s commercial engine, from the ground up.</p>
+        <p class="t-secondary">Took the commercial helm of a region and ran it as one engine: sales, partnerships and marketing pulling the same lever, with a legal entity to run. <span class="ph">XXX: markets covered, team built (from X to Y), key wins</span></p></div>
+      <p class="t-body-s t-secondary"><span class="ph">XXX: growth over the period, e.g. revenue ×X in Y years</span></p>
     </div>
     <div class="testimonial__divider"></div>
-    <div class="stack testimonial__metric" style="justify-content:flex-end;gap:var(--space-l)"><span class="t-display-xl">~60%</span><span class="t-secondary">of users adopted open-banking payments during rollout</span></div>
+    <div class="stack testimonial__metric" style="justify-content:flex-end;gap:var(--space-l)"><span class="t-display-xl">$35M+</span><span class="t-secondary">revenue led as Chief Commercial Officer</span></div>
   </article>
 
   <div class="track" id="track">
     <article class="icard icard--a">
-      <div class="media icard__img"><span class="icard__num">+68%</span><span class="label">4 months</span></div>
-      <div class="icard__text"><span class="label">Energy · Embedded payments · Nordics</span><h3 class="t-h5">Making the utility bill invisible.</h3><p>Nobody wants to think about paying for power. An embedded, recurring payment flow changed how people pay. <span class="ph">[Your role]</span></p></div>
+      <div class="media icard__img"><span class="icard__num">~60%</span><span class="label">Adoption</span></div>
+      <div class="icard__text"><span class="label">Telecom · Open banking · UK</span><h3 class="t-h5">Making sign-up disappear for a tier-one telco.</h3><p>Automated direct-debit setup via open banking cut the friction, the fraud and the manual reviews. <span class="ph">XXX: your role</span></p></div>
     </article>
     <article class="icard icard--b">
-      <div class="media icard__img"><span class="icard__num"><span class="ph">[X]×</span></span><span class="label"><span class="ph">[period]</span></span></div>
-      <div class="icard__text"><span class="label">Fintech · Commercial leadership · Southern Europe</span><h3 class="t-h5">A region’s commercial engine, Paris to Stockholm.</h3><p>Took the commercial helm and ran sales, partnerships and marketing as one lever. <span class="ph">[Clients, team, revenue]</span></p></div>
+      <div class="media icard__img"><span class="icard__num">+68%</span><span class="label">In 4 months</span></div>
+      <div class="icard__text"><span class="label">Energy · Embedded payments · Nordics</span><h3 class="t-h5">Making the utility bill invisible.</h3><p>An embedded, recurring payment flow changed how people pay for power. Activations up 68% in four months. <span class="ph">XXX: your role</span></p></div>
+    </article>
+    <article class="icard icard--a">
+      <div class="media icard__img"><span class="icard__num"><span class="ph">XX%</span></span><span class="label">Returning users</span></div>
+      <div class="icard__text"><span class="label">Payments · Product launch · Europe</span><h3 class="t-h5">A checkout that recognises you.</h3><p>Launched open banking personalisation and recognition, so returning customers pay in fewer steps. <span class="ph">XXX: conversion or speed lift, markets</span></p></div>
+    </article>
+    <article class="icard icard--b">
+      <div class="media icard__img"><span class="icard__num"><span class="ph">X→Y</span></span><span class="label">Team</span></div>
+      <div class="icard__text"><span class="label">Fintech · Global marketing · EU and US</span><h3 class="t-h5">A global marketing function, built from scratch.</h3><p>Brand, content and growth marketing designed as one team: hiring, tooling, attribution and a weekly-to-annual operating rhythm. <span class="ph">XXX: pipeline or efficiency result</span></p></div>
+    </article>
+    <article class="icard icard--a">
+      <div class="media icard__img"><span class="icard__num"><span class="ph">XX%</span></span><span class="label">Time back</span></div>
+      <div class="icard__text"><span class="label">AI · Go-to-market operations</span><h3 class="t-h5">AI as a catalyst, not a buzzword.</h3><p>AI built into marketing, sales and product workflows, with the framework and policy to make it safe in a regulated business. <span class="ph">XXX: output or speed gained</span></p></div>
+    </article>
+    <article class="icard icard--b">
+      <div class="media icard__img"><span class="icard__num"><span class="ph">XX</span></span><span class="label">Banks</span></div>
+      <div class="icard__text"><span class="label">Banking · PSD2 · Nordics</span><h3 class="t-h5">At the birth of open banking.</h3><p>Implemented PSD2 requirements inside banks and helped financial institutions move API-first and to the cloud. <span class="ph">XXX: scope and outcome</span></p></div>
+    </article>
+    <article class="icard icard--a">
+      <div class="media icard__img"><span class="icard__num"><span class="ph">XX</span></span><span class="label">Founders</span></div>
+      <div class="icard__text"><span class="label">Startups · Advisory</span><h3 class="t-h5">Sharper pitches, faster go-to-market.</h3><p>Advised founders on their pitch, positioning and go-to-market plan. <span class="ph">XXX: rounds raised or launches, anonymised</span></p></div>
     </article>
     <a class="icard icard--c" href="#contact">
       <div class="media icard__img"><span class="icard__num">Yours?</span><span class="label">Next case</span></div>
@@ -745,11 +863,12 @@ em{font-style:italic}
   </div>
 </section>
 
+<!-- METHOD -->
 <section class="section--lg container" id="how">
   <h2 class="t-h4" style="margin-bottom:var(--section-head-gap)">Three truths I build every engine on.</h2>
   <div class="panel how">
     <div class="steps" role="tablist" aria-label="Method">
-      <button class="step" type="button" role="tab" aria-expanded="true" aria-selected="true" data-i="0"><span class="icon-toggle icon-toggle--s" aria-hidden="true">+</span><h3 class="t-h6"><span class="n">01</span>Product</h3><p class="t-secondary step__desc">Great products spark interest. I start where the value is real, then find the moment a customer feels it, and build the launch around that moment.</p></button>
+      <button class="step" type="button" role="tab" aria-expanded="true" aria-selected="true" data-i="0"><span class="icon-toggle icon-toggle--s" aria-hidden="true">+</span><h3 class="t-h6"><span class="n">01</span>Product</h3><p class="t-secondary step__desc">Great products spark interest. I start where the value is real, find the moment a customer feels it, and build the launch around that moment.</p></button>
       <button class="step step--collapsed" type="button" role="tab" aria-expanded="false" aria-selected="false" data-i="1"><span class="icon-toggle icon-toggle--s" aria-hidden="true">+</span><h3 class="t-h6"><span class="n">02</span>Marketing</h3><p class="t-secondary step__desc">The right words change minds. Find the words, fit the room, keep one voice across brand, product and sales, and measure the shift in what people do.</p></button>
       <button class="step step--collapsed" type="button" role="tab" aria-expanded="false" aria-selected="false" data-i="2"><span class="icon-toggle icon-toggle--s" aria-hidden="true">+</span><h3 class="t-h6"><span class="n">03</span>Sales</h3><p class="t-secondary step__desc">Nothing sells itself. Interest and belief only count when they close, so the commercial team owns the same story and the same number.</p></button>
     </div>
@@ -763,42 +882,87 @@ em{font-style:italic}
   </div>
 </section>
 
+<!-- HOW I LEAD -->
+<section class="section--lg container" id="lead">
+  <div class="section__head"><h2 class="t-h4">How I lead.<br><span class="t-tertiary">A broad T: I won’t out-specialise the specialist. I’ll connect them.</span></h2></div>
+  <div class="lead">
+    <article class="lead__card"><span class="lead__n">01</span><h3 class="t-h6">Vision, mission, a clear path</h3><p>I bring the vision, define the mission and draw the route to it, so every team knows what winning looks like on a Monday morning.</p></article>
+    <article class="lead__card"><span class="lead__n">02</span><h3 class="t-h6">OKRs and V2MOMs</h3><p>Goals that cascade from the board to the person, one scorecard per team, and a weekly, monthly, quarterly and annual rhythm that keeps them honest.</p></article>
+    <article class="lead__card"><span class="lead__n">03</span><h3 class="t-h6">AI as a catalyst</h3><p>No buzzwords. AI that adds structure, gives people time back and builds their confidence to make great work, with policies that hold up in regulated markets.</p></article>
+    <article class="lead__card"><span class="lead__n">04</span><h3 class="t-h6">Change is the job</h3><p>Reorganisations, new strategies, new markets. I adapt fast and help teams do the same, without losing the thread.</p></article>
+  </div>
+</section>
+
+<!-- WHAT PEOPLE SAY -->
+<section class="section container" id="voices">
+  <h2 class="t-h4" style="margin-bottom:var(--section-head-gap)">What people say.</h2>
+  <div class="quotes">
+    <figure class="quote"><blockquote class="t-h6">“<span class="ph">XXX: a CEO on how fast you adapt to change and lead through it</span>”</blockquote><figcaption><span>XXX Name</span><span class="t-body-s t-secondary">CEO, <span class="ph">XXX company or sector</span></span></figcaption></figure>
+    <figure class="quote"><blockquote class="t-h6">“<span class="ph">XXX: a team member on being their best, most creative and focused self under your lead</span>”</blockquote><figcaption><span>XXX Name</span><span class="t-body-s t-secondary"><span class="ph">XXX role</span></span></figcaption></figure>
+    <figure class="quote"><blockquote class="t-h6">“<span class="ph">XXX: a founder or peer on your go-to-market thinking</span>”</blockquote><figcaption><span>XXX Name</span><span class="t-body-s t-secondary"><span class="ph">XXX role</span></span></figcaption></figure>
+  </div>
+</section>
+
+<!-- TERRAIN -->
+<section class="section container" aria-label="Sectors and markets">
+  <div class="panel terrain">
+    <div><span class="label">Sectors</span><p class="terrain__list">Payments · Open banking · Fintech · iGaming · Banking &amp; insurance · Healthcare · B2B SaaS · B2B2C</p></div>
+    <div><span class="label">Markets</span><p class="terrain__list">Nordics, in and out · France · Southern Europe · UK · North America</p></div>
+    <div><span class="label">Languages</span><p class="terrain__list">French · English · Swedish · Spanish</p></div>
+  </div>
+</section>
+
+<!-- TRAJECTORY -->
 <section class="section--lg container" id="trajectory">
   <h2 class="t-h4" style="margin-bottom:var(--space-3xl)">Consultant. Seller. Marketer. <span class="t-tertiary">Operator.</span></h2>
   <div class="plist">
-    <div class="plist__row is-active"><span class="t-h5"><span class="plist__yr">Now</span>→ Acting Chief Marketing Officer</span><p>Trustly</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2024</span>Chief Commercial Officer, Southern Europe</span><p>Trustly · Paris–Stockholm</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2023</span>VP Product Marketing</span><p>Trustly</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2021</span>VP Consumer Growth</span><p>Trustly</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2020</span>Business Marketing Manager, Partner Channel</span><p>Trustly</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2018</span>Head of Sales Nordics, xLabs</span><p>Virtusa</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2017</span>Senior Management Consultant</span><p>Virtusa</p></div>
-    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2015</span>Independent strategy consultant</span><p>Sweden &amp; France</p></div>
+    <div class="plist__row is-active"><span class="t-h5"><span class="plist__yr">Now</span>→ Global Head of Brand &amp; Marketing</span><p>Trustly · Building brand, content and growth marketing for a global team across the EU and US. <span class="ph">XXX: scope</span></p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2024</span>Chief Commercial Officer, Southern Europe</span><p>Trustly · $35M+ revenue, running the entity, go-to-market teams built from the ground up.</p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2023</span>VP Product Marketing &amp; Product Design</span><p>Trustly · Built the product marketing team; launched personalisation and recognition. <span class="ph">XXX</span></p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2021</span>VP Consumer Growth</span><p>Trustly · The consumer side of a B2B2C network. <span class="ph">XXX: headline result</span></p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2020</span>Partnerships &amp; Partner Channel Marketing</span><p>Trustly · <span class="ph">XXX: partners signed or channel revenue</span></p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2018</span>Head of Sales Nordics, xLabs</span><p>Virtusa · Innovation sandbox and MVPs for banks and insurers. <span class="ph">XXX</span></p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2017</span>Senior Management Consultant</span><p>Virtusa · PSD2, API-first and cloud programmes in banking. <span class="ph">XXX</span></p></div>
+    <div class="plist__row"><span class="t-h5"><span class="plist__yr">2015</span>Independent strategy consultant</span><p>Sweden &amp; France · Brand, packaging and go-to-market for healthcare and finance products.</p></div>
   </div>
-  <p class="t-body-s t-tertiary edu">Griffith College Dublin, graduated with Distinction, 2014 · Growth Tribe: Customer Centricity, Lead Differently</p>
+  <p class="t-body-s t-tertiary edu">Griffith College Dublin, marketing and brand, graduated with Distinction, 2014 · Growth Tribe: Customer Centricity, Lead Differently</p>
 </section>
 
+<!-- WAYS TO WORK TOGETHER -->
+<section class="section--lg container" id="ways">
+  <div class="section__head"><h2 class="t-h4">Ways to work together.<br><span class="t-tertiary">For a company whose mission I believe in.</span></h2></div>
+  <div class="grid-4 ways">
+    <article class="way"><span class="label">Lead</span><h3 class="t-h5">C-level role</h3><p>CMO, CCO or Chief Growth Officer, to build something that lasts or changes an industry.</p><a class="link" href="#contact">Discuss a role →</a></article>
+    <article class="way"><span class="label">Advise</span><h3 class="t-h5">Board &amp; investors</h3><p>Go-to-market diligence, positioning and growth plans for boards and portfolio companies.</p><a class="link" href="#contact">Discuss advisory →</a></article>
+    <article class="way"><span class="label">Coach</span><h3 class="t-h5">Founders &amp; leaders</h3><p>Pitch, positioning and go-to-market for founders; coaching for growth leaders and their teams.</p><a class="link" href="#contact">Discuss coaching →</a></article>
+    <article class="way"><span class="label">Speak</span><h3 class="t-h5">Stages &amp; community</h3><p>Talks and community on payments, go-to-market and AI in real work. <span class="ph">XXX: past talks</span></p><a class="link" href="#contact">Invite me →</a></article>
+  </div>
+</section>
+
+<!-- FAQ -->
 <section class="section container"><div class="faq">
   <h2 class="t-h4" style="margin-bottom:var(--space-xl)">Before we talk</h2>
-  <details class="faq__item" open><summary class="faq__q"><span class="t-h6">What roles are you open to?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">VP and C-level roles across marketing, product and sales, plus select advisory engagements. Payments, fintech, AI and tech, internationally.</p></details>
-  <details class="faq__item"><summary class="faq__q"><span class="t-h6">Where are you based?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">Stockholm. Remote-ready, and on a plane a few times a month for the rooms that matter.</p></details>
-  <details class="faq__item"><summary class="faq__q"><span class="t-h6">Which languages do you work in?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">French, English, Swedish and Spanish.</p></details>
+  <details class="faq__item" open><summary class="faq__q"><span class="t-h6">What roles are you open to?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">C-level roles across marketing, product and sales, plus board, investor and founder advisory. Payments, fintech, AI and B2B SaaS, internationally.</p></details>
+  <details class="faq__item"><summary class="faq__q"><span class="t-h6">Where are you based?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">Stockholm. Remote-ready, and on a plane a few times a month for the rooms that matter. At home in the Nordics and France, and working with the US fintech market.</p></details>
+  <details class="faq__item"><summary class="faq__q"><span class="t-h6">B2B or B2C?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">Strongest in B2B and SaaS, and comfortable running the consumer side of a B2B2C model, where the merchant buys and the consumer decides.</p></details>
+  <details class="faq__item"><summary class="faq__q"><span class="t-h6">How do you use AI?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">Every day, and in every team I lead. I help put the frameworks and policies in place for marketing, sales and product, so AI improves the work instead of decorating it.</p></details>
   <details class="faq__item"><summary class="faq__q"><span class="t-h6">Why one leader across three disciplines?</span><span class="icon-toggle" aria-hidden="true"></span></summary><p class="faq__a">Because growth rarely dies inside a team. It dies between them. One owner of the story, the product and the number removes the handoffs where it leaks.</p></details>
 </div></section>
 
+<!-- CTA -->
 <section class="section container" id="contact"><div class="cta">
-  <div class="cta__text"><div class="stack" style="gap:var(--space-l)"><h2 class="t-h4">Building the next growth engine?</h2><p class="t-body-l t-secondary">Open to VP and C-level roles and select advisory engagements. Based in Stockholm, remote-ready, on a plane a few times a month.</p></div>
+  <div class="cta__text"><div class="stack" style="gap:var(--space-l)"><h2 class="t-h4">Let’s speak, learn or exchange.</h2><p class="t-body-l t-secondary">Building the next growth engine, preparing a board, or looking for a speaker on payments and AI? Based in Stockholm, remote-ready, on a plane a few times a month.</p></div>
     <a class="btn btn--l btn--primary" href="https://www.linkedin.com/in/jeremypons/" target="_blank" rel="noopener">Message me on LinkedIn <span class="btn__arrow">→</span></a></div>
-  <div class="media cta__img" style="border-radius:var(--radius-l) 0 0 0"><p class="cta__quote">Your next growth engine, <em>landed.</em></p></div>
+  <img class="media cta__img cta__photo" src="jeremy-seated.webp" width="720" height="750" alt="Jérémy Pons seated, in a dark turtleneck">
 </div></section>
 </main>
 
 <footer class="footer">
   <div class="footer__cols">
-    <div class="footer__col"><h4>Explore</h4><ul><li><a href="#engine">The engine</a></li><li><a href="#work">Work</a></li><li><a href="#how">Method</a></li><li><a href="#trajectory">Trajectory</a></li></ul></div>
-    <div class="footer__col"><h4>Disciplines</h4><ul><li>Marketing</li><li>Product</li><li>Sales</li></ul></div>
-    <div class="footer__col"><h4>Sectors</h4><ul><li>Payments</li><li>Fintech</li><li>AI</li><li>Tech</li></ul></div>
-    <div class="footer__col"><h4>Open to</h4><ul><li>VP and C-level roles</li><li>Advisory</li></ul></div>
+    <div class="footer__col"><h4>Explore</h4><ul><li><a href="#about">About</a></li><li><a href="#work">Work</a></li><li><a href="#how">Method</a></li><li><a href="#trajectory">Trajectory</a></li></ul></div>
+    <div class="footer__col"><h4>Disciplines</h4><ul><li>Brand &amp; marketing</li><li>Product</li><li>Sales</li><li>AI in go-to-market</li></ul></div>
+    <div class="footer__col"><h4>Sectors</h4><ul><li>Payments</li><li>Fintech</li><li>iGaming</li><li>B2B SaaS</li></ul></div>
+    <div class="footer__col"><h4>Open to</h4><ul><li>C-level roles</li><li>Board &amp; advisory</li><li>Coaching</li><li>Speaking</li></ul></div>
     <div class="footer__col"><h4>Based</h4><ul><li>Stockholm</li><li>Paris</li><li>Remote</li></ul></div>
     <div class="footer__col"><h4>Connect</h4><ul><li><a href="https://www.linkedin.com/in/jeremypons/" target="_blank" rel="noopener">LinkedIn ↗</a></li><li><a href="#contact">Let’s talk</a></li></ul></div>
   </div>
